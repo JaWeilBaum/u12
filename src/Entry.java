@@ -2,6 +2,10 @@ public class Entry<T> {
 	private T element;
 	private Entry<T> next;
 
+	/**
+	 * 
+	 * @param element
+	 */
 	public Entry(T element) {
 		this.element = element;
 		this.next = null;
