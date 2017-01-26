@@ -39,6 +39,9 @@ public class ListProgram{
 		
 		List<Integer> list4 = list.reverse();
 		System.out.println(list4);
+		list4.removeDuplicates();
+		System.out.println(list4);
+		
 		
 		List<Integer> asdf = new List<>();
 		System.out.println(asdf.sizeDyn());

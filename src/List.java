@@ -1,3 +1,7 @@
+import javax.crypto.SealedObject;
+
+import com.sun.org.apache.xalan.internal.xsltc.compiler.util.CompareGenerator;
+
 public class List<T> {
 	private int size;
 	private Entry<T> head;
@@ -35,7 +39,7 @@ public class List<T> {
 	}
 
 	public void prefix(T element) {
-		this.prefix(new Entry(element));
+		this.prefix(new Entry<T>(element));
 	}
 
 	public void postfix(Entry<T> newLast) {
@@ -47,7 +51,7 @@ public class List<T> {
 	}
 
 	public void postfix(T element) {
-		this.postfix(new Entry(element));
+		this.postfix(new Entry<T>(element));
 	}
 
 	public List<T> rest() {
@@ -87,7 +91,7 @@ public class List<T> {
 		List<T> list = new List<>();
 		Entry<T> entry = this.head;
 		list.head = new Entry<T>(this.head.getElement());
-		while(entry.getNext() != null) {
+		while (entry.getNext() != null) {
 			entry = entry.getNext();
 			list.postfix(entry.getElement());
 		}
@@ -99,22 +103,48 @@ public class List<T> {
 		List<T> newList2 = list.clone();
 		newList.concat(newList2);
 		return newList;
-		
+
 	}
 
 	public List<T> reverse() {
 		List<T> list = new List<>();
 		Entry<T> entry = this.head;
 		list.head = new Entry<T>(entry.getElement());
-		while(entry.getNext() != null) {
+		while (entry.getNext() != null) {
 			entry = entry.getNext();
 			list.prefix(new Entry<T>(entry.getElement()));
 		}
 		return list;
 	}
 
+	private boolean contains(List<T> list, T element) {
+		try {
+		Entry<T> entrySearch = list.head;
+		while (entrySearch != null) {
+			if (((T)(element)) == ((T)entrySearch.getElement())) {
+				return true;
+			}
+			entrySearch = entrySearch.getNext();
+		}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return false;
+	}
+
 	public void removeDuplicates() {
-		// TODO g)
+		List<T> list = new List<>();
+		Entry<T> entry = this.head;
+		list.head = new Entry<T>(entry.getElement());
+		entry = entry.getNext();
+		while (entry != null) {
+			if (!list.contains(list, entry.getElement())) {
+				list.postfix(entry.getElement());
+			}
+			entry = entry.getNext();
+		}
+		this.head = list.head;
+		this.size = list.size;
 	}
 
 	public String toString() {

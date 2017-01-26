@@ -18,4 +18,5 @@ public class Entry<T> {
 	public void setNext(Entry<T> next) {
 		this.next = next;
 	}
+
 }
