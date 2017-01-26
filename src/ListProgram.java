@@ -28,12 +28,20 @@ public class ListProgram{
 		list2.postfix(19);
 		System.out.println(list);
 		
-		List<Integer> list3 = list.concatClone(list2);
-		list2.postfix(29);
+		List<Integer> list3 = list2.clone();
 		System.out.println(list3);
+		
+		List<Integer> list_ = list.concatClone(list2);
+		list2.postfix(29);
+		
+		System.out.println(list_);
+		
 		
 		List<Integer> list4 = list.reverse();
 		System.out.println(list4);
+		
+		List<Integer> asdf = new List<>();
+		System.out.println(asdf.sizeDyn());
 		
 		// sollte zuletzt ausgeben:
 		// (29, 19, 32, 33, 8, 5, 1, 22, 2, 5, 5, 2, 9, 6, 5)
